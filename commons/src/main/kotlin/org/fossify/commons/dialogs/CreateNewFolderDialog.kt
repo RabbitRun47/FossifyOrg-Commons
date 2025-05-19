@@ -92,6 +92,8 @@ class CreateNewFolderDialog(val activity: BaseSimpleActivity, val path: String, 
                     }
                 }
 
+                //
+                print("message 3")
                 else -> activity.toast(activity.getString(R.string.could_not_create_folder, path.getFilenameFromPath()))
             }
         } catch (e: Exception) {

@@ -22,6 +22,7 @@ import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
 import java.lang.ref.WeakReference
+import android.util.Log
 
 class CopyMoveTask(
     val activity: BaseSimpleActivity, val copyOnly: Boolean, val copyMediaOnly: Boolean, val conflictResolutions: LinkedHashMap<String, Int>,
@@ -172,6 +173,8 @@ class CopyMoveTask(
 
     private fun copyDirectory(source: FileDirItem, destinationPath: String) {
         if (!activity.createDirectorySync(destinationPath)) {
+            //
+            print("message 1")
             val error = String.format(activity.getString(R.string.could_not_create_folder), destinationPath)
             activity.showErrorToast(error)
             return
@@ -245,6 +248,8 @@ class CopyMoveTask(
 
         val directory = destination.getParentPath()
         if (!activity.createDirectorySync(directory)) {
+            //
+            print("message 2")
             val error = String.format(activity.getString(R.string.could_not_create_folder), directory)
             activity.showErrorToast(error)
             mCurrentProgress += source.size

@@ -12,6 +12,8 @@ import java.io.OutputStream
 fun BaseSimpleActivity.copySingleFileSdk30(source: FileDirItem, destination: FileDirItem): Boolean {
     val directory = destination.getParentPath()
     if (!createDirectorySync(directory)) {
+        //
+        print("message 4")
         val error = String.format(getString(R.string.could_not_create_folder), directory)
         showErrorToast(error)
         return false
