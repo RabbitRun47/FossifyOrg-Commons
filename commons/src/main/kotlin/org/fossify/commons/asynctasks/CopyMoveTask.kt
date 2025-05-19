@@ -173,7 +173,6 @@ class CopyMoveTask(
 
     private fun copyDirectory(source: FileDirItem, destinationPath: String) {
         if (!activity.createDirectorySync(destinationPath)) {
-            //
             print("message 1")
             val error = String.format(activity.getString(R.string.could_not_create_folder), destinationPath)
             activity.showErrorToast(error)
@@ -248,7 +247,6 @@ class CopyMoveTask(
 
         val directory = destination.getParentPath()
         if (!activity.createDirectorySync(directory)) {
-            //
             print("message 2")
             val error = String.format(activity.getString(R.string.could_not_create_folder), directory)
             activity.showErrorToast(error)
