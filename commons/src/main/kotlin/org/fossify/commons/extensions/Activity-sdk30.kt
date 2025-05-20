@@ -8,11 +8,12 @@ import org.fossify.commons.models.FileDirItem
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
+import android.util.Log
 
 fun BaseSimpleActivity.copySingleFileSdk30(source: FileDirItem, destination: FileDirItem): Boolean {
     val directory = destination.getParentPath()
     if (!createDirectorySync(directory)) {
-        print("message 4")
+        Log.d("DebugMessage", "message 4")
         val error = String.format(getString(R.string.could_not_create_folder), directory)
         showErrorToast(error)
         return false

@@ -26,6 +26,7 @@ import org.fossify.commons.databinding.DialogCreateNewFolderBinding
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.isRPlus
 import java.io.File
+import android.util.Log
 
 class CreateNewFolderDialog(val activity: BaseSimpleActivity, val path: String, val callback: (path: String) -> Unit) {
     init {
@@ -93,7 +94,7 @@ class CreateNewFolderDialog(val activity: BaseSimpleActivity, val path: String, 
                 }
 
                 else -> {
-                    print("message 3")
+                    Log.d("DebugMessage", "message 3")
                     activity.toast(activity.getString(R.string.could_not_create_folder, path.getFilenameFromPath()))
                 }
             }
