@@ -1290,4 +1290,42 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_CODE_SET_DEFAULT_CALLER_ID)
         }
     }
+
+    fun isAppPrivatePath(path: String): Boolean {
+        return path.startsWith(filesDir.absolutePath) || path.startsWith(cacheDir.absolutePath)
+    }
+
+    fun hasLegacyStorageAccess(): Boolean {
+        return if (isRPlus()) {
+            false // Android 11+ always uses scoped storage
+        } else {
+            checkStoragePermission() // Check if we have legacy storage permission
+        }
+    }
+
+    private fun checkStoragePermission(): Boolean {
+        return if (isRPlus()) {
+            false
+        } else {
+            hasStoragePermission()
+        }
+    }
+
+    private fun hasStoragePermission(): Boolean {
+        return if (isQPlus()) {
+            hasPermission(PERMISSION_WRITE_STORAGE) && hasPermission(PERMISSION_READ_STORAGE)
+        } else {
+            hasPermission(PERMISSION_WRITE_STORAGE)
+        }
+    }
+
+    fun isAccessiblePath(path: String): Boolean {
+        return if (isRPlus()) {
+            true // Android 11+ always uses SAF
+        } else if (isAppPrivatePath(path)) {
+            true
+        } else {
+            hasLegacyStorageAccess()
+        }
+    }
 }

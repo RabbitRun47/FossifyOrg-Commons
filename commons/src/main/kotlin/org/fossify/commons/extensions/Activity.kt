@@ -182,7 +182,7 @@ fun BaseSimpleActivity.isShowingSAFDialog(path: String): Boolean {
 
 @SuppressLint("InlinedApi")
 fun BaseSimpleActivity.isShowingSAFDialogSdk30(path: String, showRationale: Boolean = true): Boolean {
-    return if (isAccessibleWithSAFSdk30(path) && !hasProperStoredFirstParentUri(path)) {
+    return if (isAccessiblePath(path) && !hasProperStoredFirstParentUri(path)) {
         runOnUiThread {
             if (!isDestroyed && !isFinishing) {
                 if (showRationale) {

@@ -834,8 +834,12 @@ class ContactsHelper(val context: Context) {
 
         var hadEmptyAccount = false
         val allAccounts = getContentResolverAccounts()
+        if (allAccounts.isEmpty()) {
+            hadEmptyAccount = true
+        }
+        val notHasPhoneAccount = allAccounts.none { it.name.lowercase(Locale.getDefault()) == "phone" }
         val contentResolverAccounts = allAccounts.filter {
-            if (it.name.isEmpty() && it.type.isEmpty() && allAccounts.none { it.name.lowercase(Locale.getDefault()) == "phone" }) {
+            if (it.name.isEmpty() && it.type.isEmpty() && notHasPhoneAccount) {
                 hadEmptyAccount = true
             }
 
