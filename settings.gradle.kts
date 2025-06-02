@@ -11,6 +11,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
+        mavenLocal() // This is the key!
     }
 }
 rootProject.name = "Fossify-Commons"
